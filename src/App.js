@@ -38,12 +38,9 @@ class App extends Component {
     }));
   };
 
-  bigImage = ({ target }) => {
-    const { lgimg, tag } = target.dataset;
-    this.setState({
-      largeImage: lgimg,
-      imgTags: tag,
-    });
+  bigImage = (largeImage = '') => {
+    this.setState({ largeImage });
+
     this.toggleModal();
   };
 
@@ -93,7 +90,7 @@ class App extends Component {
           <Button onClick={this.fetchPictures} />
         )}
         {showModal && (
-          <Modal showModal={this.toggleModal}>
+          <Modal showModal={this.bigImage}>
             <img src={largeImage} alt={imgTags} />
           </Modal>
         )}

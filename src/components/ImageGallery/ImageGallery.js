@@ -5,9 +5,17 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 const ImageGallery = ({ pictures, bigImage }) => {
   return (
     <ul className={css.ImageGallery}>
-      {pictures.map(picture => (
-        <ImageGalleryItem {...picture} key={picture.id} bigImage={bigImage} />
-      ))}
+      {pictures.map(({ id, webformatURL, largeImageURL }) => {
+        const handleItemClick = () => bigImage(largeImageURL);
+
+        return (
+          <ImageGalleryItem
+            key={id}
+            image={webformatURL}
+            onClick={handleItemClick}
+          />
+        );
+      })}
     </ul>
   );
 };
